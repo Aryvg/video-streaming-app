@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <script>
+      (function () {
+        const basePath = '/video-streaming-app';
+        const pathname = window.location.pathname;
+        const normalizedPath = pathname.startsWith(basePath + '/')
+          ? pathname.slice(basePath.length) || '/'
+          : pathname;
+        const safePath = normalizedPath && normalizedPath !== '/' ? normalizedPath : '/';
+        const searchParams = new URLSearchParams(window.location.search);
+        searchParams.set('p', safePath);
+        const redirectUrl = `${basePath}/?${searchParams.toString()}`;
+        window.location.replace(redirectUrl);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
